@@ -3,9 +3,10 @@ import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
 import { typeDefs } from "./typeDefs.ts";
 import { resolvers } from "./resolvers.ts";
+import { GraphQLError } from "graphql";
 
 const MONGO_URL = Deno.env.get("MONGO_URL")
-if(!MONGO_URL) Deno.exit(1)
+if(!MONGO_URL) throw new GraphQLError("MONGO URL NOT EXISTS")
 
 const client = new MongoClient(MONGO_URL)
 await client.connect()
