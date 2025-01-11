@@ -2,6 +2,9 @@
   "tasks": {
     "dev": "deno run -A --env --watch main.ts"
   },
+  "lint": {
+    "tags": ["recommended"]
+  },
   "imports": {
     "@apollo/server": "npm:@apollo/server@^4.11.2",
     "@std/assert": "jsr:@std/assert@1",
