@@ -18,7 +18,7 @@ const ContactCollection = db.collection("contact")
 const server = new ApolloServer({typeDefs, resolvers})
 
 const { url } = await startStandaloneServer(server,{
-  context: async() => ({ ContactCollection })
+  context: () => ({ ContactCollection })
 })
 
 console.log(`🚀  Server ready at: ${url}`);
