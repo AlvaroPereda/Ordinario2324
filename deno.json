@@ -3,7 +3,9 @@
     "dev": "deno run -A --env --watch main.ts"
   },
   "lint": {
-    "tags": ["recommended"]
+    "rules": {
+      "tags": ["recommended"]
+    }
   },
   "imports": {
     "@apollo/server": "npm:@apollo/server@^4.11.2",
