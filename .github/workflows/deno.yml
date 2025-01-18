@@ -39,3 +39,29 @@ jobs:
 
       - name: Run tests
         run: deno test -A
+
+  generate-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Generate documentation
+        run: deno doc > docs/generated-docs.md
+
+      - name: Commit and push docs
+        if: ${{ github.ref == 'refs/heads/master' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/generated-docs.md
+          git commit -m "Update generated documentation"
+          git push
